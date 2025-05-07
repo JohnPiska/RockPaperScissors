@@ -17,6 +17,7 @@ function getHumanChoice(choices) {
 }
 
 function playGame(){
+
     for(let i = 0; i <= 5; i += 1){
 
         const humanSelection = getHumanChoice(choices);
@@ -47,16 +48,27 @@ function playGame(){
                 console.log('You lose! Rock beats Scissors');
                 computerScore += 1;
             }
+            else{
+                console.log("It's a tie!");
+            }
         }
         console.log('Your choice: ' + humanSelection);
         console.log('Computer choice: ' + computerSelection);
-        console.log(playRound(humanSelection, computerSelection))
-        console.log(humanScore, computerScore)
+        playRound(humanSelection, computerSelection);
+        console.log('Your score: ' + humanScore)
+        console.log('Computer score: ' + computerScore)
+    }
+    if(humanScore > computerScore){
+        console.log('You win! Congratulations')
+    }
+    else if(humanScore < computerScore){
+        console.log('You lose! Try again')
     }
 }
-let choices = ['Rock', 'Paper', 'Scissors'];
-let humanScore, computerScore = 0;
 
+let choices = ['Rock', 'Paper', 'Scissors'];
+let humanScore = 0;
+let computerScore = 0;
 playGame()
 
 
