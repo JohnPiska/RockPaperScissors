@@ -1,29 +1,18 @@
-console.log('Hello, World!')
+console.log('Hello, World!');
+
+let choices = ['Rock', 'Paper', 'Scissors'];
+let humanScore = 0;
+let computerScore = 0;
 
 function getComputerChoice(choices) {
     choices = choices[Math.floor(Math.random() * choices.length)];
     return choices;
 }
 
-function getHumanChoice(choices) {
-    let humanChoice = prompt('Make your choice(Rock, Paper or Scissors)');
-    humanChoice = humanChoice[0].toUpperCase() + humanChoice.slice(1).toLowerCase();
-    // if(humanChoice in choices){
-    return humanChoice;
-    // }
-    // else{
-    //     throw('Неверный ввод');
-    // }
-}
+function playRound(humanSelection, computerSelection){
+    console.log('Your choice: ' + humanSelection);
+    console.log('Computer choice: ' + computerSelection);
 
-function playGame(){
-
-    for(let i = 0; i <= 5; i += 1){
-
-        const humanSelection = getHumanChoice(choices);
-        const computerSelection = getComputerChoice(choices);
-
-        function playRound(humanSelection, computerSelection){
             if(humanSelection === 'Rock' && computerSelection === 'Scissors'){
                 console.log('You win! Rock beats Scissors');
                 humanScore += 1;
@@ -51,25 +40,35 @@ function playGame(){
             else{
                 console.log("It's a tie!");
             }
-        }
-        console.log('Your choice: ' + humanSelection);
-        console.log('Computer choice: ' + computerSelection);
-        playRound(humanSelection, computerSelection);
-        console.log('Your score: ' + humanScore)
-        console.log('Computer score: ' + computerScore)
+            
+            console.log('Your score: ' + humanScore)
+            console.log('Computer score: ' + computerScore)
+
+    if(humanScore >= 5){
+        console.log('You won! Congratulations')
+        humanScore = 0;
+        computerScore = 0;
     }
-    if(humanScore > computerScore){
-        console.log('You win! Congratulations')
+    else if(computerScore >= 5){
+        console.log('You lost! Try again')
+        humanScore = 0;
+        computerScore = 0;
     }
-    else if(humanScore < computerScore){
-        console.log('You lose! Try again')
-    }
+
 }
 
-let choices = ['Rock', 'Paper', 'Scissors'];
-let humanScore = 0;
-let computerScore = 0;
-playGame()
+  const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", () => {
+            const humanSelection = button.id;
+            const computerSelection = getComputerChoice(choices);
+            playRound(humanSelection, computerSelection);
+    });
+});
+
+
+
+
 
 
 
